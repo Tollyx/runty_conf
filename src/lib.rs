@@ -78,19 +78,18 @@ impl Config {
         self.bools.insert(key.to_string(), result);
         return result;
     }
-    /*
-    fn set_string(&mut self, key: &String, value: &String) {
-        unimplemented!()
+
+    pub fn set_string(&mut self, key: &str, value: &str) {
+        self.strings.insert(key.to_string(), value.to_string());
     }
 
-    fn set_number(&mut self, key: &String, value: &f32) {
-        unimplemented!()
+    pub fn set_number(&mut self, key: &str, value: &f32) {
+        self.numbers.insert(key.to_string(), value.clone());
     }
 
-    fn set_bool(&mut self, key: &String, value: &bool) {
-        unimplemented!()
+    pub fn set_bool(&mut self, key: &str, value: &bool) {
+        self.bools.insert(key.to_string(), value.clone());
     }
-    */
 }
 
 pub fn load(path: &str) -> Config {
