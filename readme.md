@@ -6,12 +6,12 @@ A tiny rust library for using simple ini-like config files.
 
 ### Loading/creating a config file
 
-```rs
+```rust
 let conf = runty_conf::load("app.cfg");
 ```
 
 ### Getting values
-```rs
+```rust
 let name = conf.get_string(&key, &default);
 ```
 It returns and inserts the default value if the key doesn't exist.
@@ -19,7 +19,7 @@ It returns and inserts the default value if the key doesn't exist.
 There are methods for numbers (f32) and bools as well.
 
 ### Setting values
-```rs
+```rust
 conf.set_string(&key, &value);
 ```
 
