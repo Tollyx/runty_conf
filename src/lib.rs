@@ -1,4 +1,3 @@
-#![allow(dead_code)]
 use std::error::Error;
 use std::fs::File;
 use std::fs::OpenOptions;
@@ -35,13 +34,13 @@ impl Config {
         };
         let mut lines: Vec<String> = Vec::new();
         for (key, value) in self.bools.iter() {
-            lines.push(format!("{}: {}\n", key, value))
+            lines.push(format!("{} = {}\n", key, value))
         }
         for (key, value) in self.numbers.iter() {
-            lines.push(format!("{}: {}\n", key, value))
+            lines.push(format!("{} = {}\n", key, value))
         }
         for (key, value) in self.strings.iter() {
-            lines.push(format!("{}: {}\n", key, value))
+            lines.push(format!("{} = {}\n", key, value))
         }
         lines.sort();
         for line in lines {
@@ -108,7 +107,7 @@ pub fn load(path: &str) -> Config {
     let mut config = Config::new(path);
 
     for line in config_string.lines() {
-        let i = match line.find(":") {
+        let i = match line.find("=") {
             None => continue,
             Some(i) => i,
         };

@@ -1,5 +1,5 @@
 [package]
-name = "rcfg"
+name = "rscfg"
 version = "0.1.0"
 authors = ["Adrian Hedqvist <adrian@tollyx.net>"]
 
