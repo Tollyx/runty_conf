@@ -23,6 +23,14 @@ There are methods for numbers (f32) and bools as well.
 conf.set_string(&key, &value);
 ```
 
+### Example output
+```
+width = 800
+height = 600
+fullscreen = false
+mode = foobar
+```
+
 ## Possible improvements
  * Do not allow identical keys for different types of values. (The config values are stored in different BTreeMaps depending on type)
  * Store and return values in enums?
