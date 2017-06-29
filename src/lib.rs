@@ -2,6 +2,7 @@ use std::error::Error;
 use std::fs::File;
 use std::fs::OpenOptions;
 use std::io::prelude::*;
+use std::io;
 use std::string::String;
 use std::collections::BTreeMap;
 use std::vec::Vec;
@@ -23,15 +24,12 @@ impl Config {
         }
     }
 
-    pub fn save(&self) {
-        let mut file = match OpenOptions::new()
+    pub fn save(&self) -> io::Result<()> {
+        let mut file = OpenOptions::new()
                   .write(true)
                   .truncate(true)
                   .create(true)
-                  .open(&self.path) {
-            Ok(file) => file,
-            Err(why) => panic!("Couldn't open {}: {}", self.path, why.description()),
-        };
+                  .open(&self.path)?;
         let mut lines: Vec<String> = Vec::new();
         for (key, value) in &self.bools {
             lines.push(format!("{} = {}\n", key, value))
@@ -44,10 +42,9 @@ impl Config {
         }
         lines.sort();
         for line in lines {
-            if let Err(why) = file.write_all(line.as_bytes()) {
-                panic!("Couldn't write {}: {}", self.path, why.description());
-            };
+            file.write_all(line.as_bytes())?;
         }
+        Ok(())
     }
 
     pub fn get_string(&mut self, key: &str, default: &str) -> String {
